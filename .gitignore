@@ -1,0 +1,32 @@
+# Local dataset archive cache (preserve placeholder directory in Git)
+.cache/*
+!.cache/.gitkeep
+
+# Generated declarative seed contract and temporary write files
+init-db/seed.conf
+init-db/*.tmp
+
+# Local environment secrets and overrides
+.env
+.env.local
+
+# Python artifacts and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# OS and IDE metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo

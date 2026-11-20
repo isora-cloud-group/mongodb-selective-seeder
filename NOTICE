@@ -1,0 +1,25 @@
+MongoDB Selective Seeder
+Copyright 2026 Sandra Gabriela Puerto Torres
+Commercial Brand & Distribution: Isora Cloud Group (https://isora.com.co)
+
+Architect & Sole System Designer:
+  Sandra Gabriela Puerto Torres (https://sandrapuerto.com)
+
+Code Generation & Implementation Engine:
+  Google Antigravity (under direct architectural direction of Sandra Gabriela Puerto Torres)
+
+This product includes software created and architected by Sandra Gabriela Puerto Torres,
+implemented with Google Antigravity, and distributed by Isora Cloud Group under the
+Apache License, Version 2.0.
+
+Third-Party Attributions:
+
+1. Official MongoDB Atlas Sample Datasets (`sampledata.archive`)
+   Provided by MongoDB, Inc. for educational and local development use.
+   Upstream distribution URL:
+   https://atlas-education.s3.amazonaws.com/sampledata.archive
+
+2. Rich (Terminal UI Library)
+   Copyright Will McGugan / Textualize
+   Licensed under the MIT License
+   https://github.com/Textualize/rich

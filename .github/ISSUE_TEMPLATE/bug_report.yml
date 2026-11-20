@@ -1,0 +1,52 @@
+name: Bug Report
+description: Report unexpected behavior in the configurator, Docker Compose setup, or MongoDB initialization.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue. Please ensure you reviewed README.md and SUPPORT.md before submitting.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: Clear summary of what happened versus what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands executed (for example, docker compose run --rm configurator).
+      value: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Output from `docker compose logs mongodb` or configurator terminal output.
+      render: shell
+    validations:
+      required: false
+  - type: dropdown
+    id: os
+    attributes:
+      label: Host Operating System
+      options:
+        - Windows (Docker Desktop / WSL2)
+        - macOS (Apple Silicon / Intel)
+        - Linux (Docker Engine)
+    validations:
+      required: true
+  - type: input
+    id: docker_version
+    attributes:
+      label: Docker & Compose Versions
+      description: Run `docker --version` and `docker compose version`.
+      placeholder: "Docker 27.x, Compose v2.x"
+    validations:
+      required: false

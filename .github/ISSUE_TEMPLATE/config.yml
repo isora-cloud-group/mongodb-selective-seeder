@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Student Support & Troubleshooting
+    url: ../blob/main/SUPPORT.md
+    about: Check common solutions, connection strings, and volume reset steps first.
+  - name: Security Vulnerability Disclosure
+    url: ../blob/main/SECURITY.md
+    about: Report security flaws privately instead of opening a public issue.

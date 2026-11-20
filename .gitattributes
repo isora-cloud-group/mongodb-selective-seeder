@@ -1,0 +1,17 @@
+# Enforce consistent LF line endings across Windows, macOS, and Linux hosts
+* text=auto eol=lf
+
+*.sh text eol=lf
+*.conf text eol=lf
+*.py text eol=lf
+Dockerfile text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+.editorconfig text eol=lf
+.env.example text eol=lf
+
+# Treat MongoDB binary archives strictly as opaque binary blobs
+*.archive binary
+*.tmp binary

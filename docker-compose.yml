@@ -1,0 +1,55 @@
+name: mongodb-selective-seeder
+
+services:
+  mongodb:
+    # Exigir versión explícita desde .env evita cambios silenciosos de motor entre estudiantes.
+    image: mongo:${MONGO_VERSION:?MONGO_VERSION must be set in .env}
+    container_name: mongodb-selective-seeder
+    restart: unless-stopped
+    ports:
+      # Mantener fallback solo para interfaz y puerto local reduce fricción sin exponer secretos.
+      - "${MONGO_HOST:-127.0.0.1}:${MONGO_PORT:-27017}:27017"
+    environment:
+      # Exigir credenciales desde .env impide arrancar la base de datos con claves implícitas.
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:?MONGO_INITDB_ROOT_USERNAME must be set in .env}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?MONGO_INITDB_ROOT_PASSWORD must be set in .env}
+    volumes:
+      - mongo_data:/data/db
+      - ./.cache:/datasets-cache:ro
+      - ./init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      # Exigir ausencia del PID temporal de initdb evita reportar 'healthy' mientras mongorestore sigue importando.
+      test:
+        [
+          "CMD-SHELL",
+          "test ! -f /tmp/docker-entrypoint-temp-mongod.pid && mongosh --quiet -u \"$$MONGO_INITDB_ROOT_USERNAME\" -p \"$$MONGO_INITDB_ROOT_PASSWORD\" --authenticationDatabase admin --eval 'db.adminCommand({ ping: 1 }).ok'"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 36
+      start_period: 15s
+
+  configurator:
+    build:
+      context: ./configurator
+      dockerfile: Dockerfile
+      args:
+        # Inyectar versiones exactas de compilación garantiza paridad entre bsondump y MongoDB.
+        MONGO_VERSION: ${MONGO_VERSION:?MONGO_VERSION must be set in .env}
+        PYTHON_VERSION: ${PYTHON_VERSION:?PYTHON_VERSION must be set in .env}
+    profiles:
+      - setup
+    stdin_open: true
+    tty: true
+    environment:
+      # Exigir origen y nombre de archivo desde .env evita descargas implícitas inconsistentes.
+      MONGO_SAMPLE_URL: ${MONGO_SAMPLE_URL:?MONGO_SAMPLE_URL must be set in .env}
+      ARCHIVE_FILENAME: ${ARCHIVE_FILENAME:?ARCHIVE_FILENAME must be set in .env}
+      CACHE_DIR: /app/.cache
+      INIT_DB_DIR: /app/init-db
+    volumes:
+      - ./.cache:/app/.cache
+      - ./init-db:/app/init-db
+
+volumes:
+  mongo_data:

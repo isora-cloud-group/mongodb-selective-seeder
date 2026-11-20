@@ -1,0 +1,26 @@
+name: Feature Request
+description: Propose an improvement, documentation update, or dataset catalog addition.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Academic Need
+      description: Describe the classroom or workflow limitation this feature would address.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Describe the suggested design while preserving the Declarative Contract Architecture.
+    validations:
+      required: true
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Architectural Alignment
+      options:
+        - label: Compatible with Windows, macOS, and Linux without requiring host Python or bash
+        - label: Does not require mounting the host Docker socket (/var/run/docker.sock)
