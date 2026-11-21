@@ -86,9 +86,11 @@ flowchart TD
 
 ## 3. Quick Start & Operational Workflow
 
-### Step 1: Create Local `.env` Configuration
+### Step 1: Clone & Create Local `.env` Configuration
 
 ```bash
+git clone https://github.com/isora-cloud-group/mongodb-selective-seeder.git
+cd mongodb-selective-seeder
 cp .env.example .env
 ```
 
