@@ -158,6 +158,8 @@ docker compose up -d --wait
 | `MONGO_INITDB_ROOT_PASSWORD` | Yes | `change_me_local_only` | Root administrator password created on first boot |
 | `MONGO_SAMPLE_URL` | Yes | `https://atlas-education.s3.amazonaws.com/sampledata.archive` | Direct HTTP/HTTPS URL for `.archive` download |
 | `ARCHIVE_FILENAME` | Yes | `sampledata.archive` | Local filename written inside `./.cache/` |
+| `MONGO_CPU_LIMIT` | Yes | `2.0` | Maximum CPU cores allocated to the `mongodb` container |
+| `MONGO_MEMORY_LIMIT` | Yes | `2g` | Maximum RAM limit allocated to the `mongodb` container |
 | `MONGO_HOST` | No | `127.0.0.1` | Host interface bound by Docker port mapping |
 | `MONGO_PORT` | No | `27017` | Host TCP port mapped to container port `27017` |
 

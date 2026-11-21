@@ -47,7 +47,7 @@ docker compose logs -f mongodb
 
 ## Non-Negotiable Architectural Invariants
 
-1. **Strict `.env` Enforcement (No Hardcoded Credentials or Runtime Versions):** Never add hardcoded fallback defaults for `MONGO_VERSION`, `PYTHON_VERSION`, `MONGO_INITDB_ROOT_USERNAME`, `MONGO_INITDB_ROOT_PASSWORD`, `MONGO_SAMPLE_URL`, or `ARCHIVE_FILENAME` inside `docker-compose.yml` or `configurator/Dockerfile`. Only `MONGO_HOST` and `MONGO_PORT` may carry fallback defaults.
+1. **Strict `.env` Enforcement (No Hardcoded Credentials or Runtime Versions):** Never add hardcoded fallback defaults for `MONGO_VERSION`, `PYTHON_VERSION`, `MONGO_INITDB_ROOT_USERNAME`, `MONGO_INITDB_ROOT_PASSWORD`, `MONGO_SAMPLE_URL`, `ARCHIVE_FILENAME`, `MONGO_CPU_LIMIT`, or `MONGO_MEMORY_LIMIT` inside `docker-compose.yml` or `configurator/Dockerfile`. Only `MONGO_HOST` and `MONGO_PORT` may carry fallback defaults.
 2. **Never Hardcode Selectable Datasets:** Never replace dynamic `.archive` introspection with a fixed list of selectable datasets. Always discover restorable databases dynamically from the selected archive and fall back cleanly on uncatalogued custom databases.
 3. **Never mount `/var/run/docker.sock`:** `configurator` must never invoke Docker commands, edit `docker-compose.yml`, or require elevated daemon access.
 4. **Never parse `.archive` BSON payloads manually in Python:** Delegate binary decoding exclusively to the official MongoDB tools (`bsondump` / `mongorestore`) copied cleanly in `configurator/Dockerfile`.

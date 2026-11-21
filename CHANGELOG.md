@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.0] - 2026-11-21
+
+### Added
+
+- **Strict Resource Limits in `.env`:** Added required `MONGO_CPU_LIMIT` and `MONGO_MEMORY_LIMIT` variables to `.env.example` and enforced `deploy.resources.limits` (`cpus`, `memory`) in `docker-compose.yml` using fail-fast `${VAR:?error}` validation.
+- **Documentation & Governance:** Documented CPU and RAM resource limits in `README.md` and `AGENTS.md`.
 
 ### Changed
 

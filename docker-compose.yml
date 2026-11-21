@@ -28,6 +28,12 @@ services:
       timeout: 5s
       retries: 36
       start_period: 15s
+    deploy:
+      resources:
+        limits:
+          # Restringir CPU y RAM desde .env protege la estabilidad del host durante importaciones intensivas.
+          cpus: "${MONGO_CPU_LIMIT:?MONGO_CPU_LIMIT must be set in .env}"
+          memory: "${MONGO_MEMORY_LIMIT:?MONGO_MEMORY_LIMIT must be set in .env}"
 
   configurator:
     build:
